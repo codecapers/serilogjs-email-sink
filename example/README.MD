@@ -12,8 +12,11 @@ You may have to npm install dependencies:
 
 	npm install	
 
+
+Edit server.js add the username/password for your email account.
+
 Then run the script using NodeJS:
 
 	node server.js
 
-You should now see examples of logging that were output from *server.js*.
+Now go check your email!
