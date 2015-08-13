@@ -1,12 +1,16 @@
-# structured-log NodeJS Server-side Example
+# structured-log NodeJS Email Sink Example
 
-This example is a very simple example shows setup and usage of *structured-log* in NodeJS.
+This examples shows usage of the structured-log NodeJS email sink.
 
 To run you first need to have [NodeJS](https://nodejs.org/) installed.
 
 The change directory to where the example is (where this *readme* is): 
 
-	cd examples/nodejs 
+	cd example
+
+You may have to npm install dependencies:
+
+	npm install	
 
 Then run the script using NodeJS:
 
