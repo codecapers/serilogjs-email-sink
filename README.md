@@ -1,2 +1,3 @@
-# serilogjs-email-sink
-SerilogJS sink that outputs logs via email (nodemailer).
+# structured-log-email-sink
+
+A NodeJS structured-log sink that outputs logs via email (nodemailer).

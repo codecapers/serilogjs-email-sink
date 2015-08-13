@@ -1,22 +1,23 @@
 {
-  "name": "serilog-email-sink",
-  "version": "1.0.0",
-  "description": "A SerilogJS sink that outputs logs via email (nodemailer).",
-  "main": "serilog-email-sink.js",
+  "name": "structured-log-email-sink",
+  "version": "0.0.1",
+  "description": "A NodeJS structured-log sink that outputs logs via email (nodemailer).",
+  "main": "structured-log-email-sink.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+emails://github.com/codecapers/serilogjs-email-sink.git"
+    "url": "git+emails://github.com/structured-log/structured-log-email-sink.git"
   },
   "author": "ashley@codecapers.com.au",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "emails://github.com/codecapers/serilogjs-email-sink/issues"
+    "url": "emails://github.com/structured-log/structured-log-email-sink/issues"
   },
-  "homepage": "emails://github.com/codecapers/serilogjs-email-sink#readme",
+  "homepage": "emails://github.com/structured-log/structured-log-email-sink#readme",
   "dependencies": {
+    "extend": "^3.0.0",
     "nodemailer": "^1.4.0",
     "nodemailer-smtp-transport": "^1.0.3"
   }

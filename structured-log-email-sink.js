@@ -1,6 +1,6 @@
 'use strict';
 
-// Copyright 2014 Serilog Contributors
+// Copyright 2014 Structured-Log Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,40 +20,47 @@
 
 var EmailSink = function (options) {
 
+    // Argument checking.
+    if (!options) {
+        throw new Error("'options' parameter is required.");
+    }
+
+    if (!options.transport) {
+        throw new Error("'options.transport' field is required.");
+    }
+
+    if (!options.email) {
+        throw new Error("'options.email' field is required.");
+    }
+
     var self = this;
 
     var nodemailer = require('nodemailer');
+    var extend = require('extend');
 
     self.toString = function() { return 'EmailSink'; };
 
-    options = options || {};
-
     var emailTransport = null;
 
-    if (options.service) {        
-        emailTransport = nodemailer.createTransport({
-            service: options.service,
-            auth: options.auth,
-        });
+    if (options.transport.service) {        
+        emailTransport = nodemailer.createTransport(options.transport);
     }
     else {
         var smtpTransport = require('nodemailer-smtp-transport');
 
-        emailTransport = nodemailer.createTransport(smtpTransport({
-            host: options.host || 'localhost',
-            port: options.port || 25,
-            auth: options.auth || {},
-        }));
+        emailTransport = nodemailer.createTransport(smtpTransport(options.transport));
     }
 
-    self.emit = function(evt) {
+    self.emit = function(evts) {
 
-        emailTransport.sendMail({
-            from: options.from,
-            to: options.to,
-            subject: evt.level + ' log',
-            text: evt.messageTemplate.render(evt.properties),
-        });
+        var emailBody = evts
+            .map(function (evt) { 
+                return evt.messageTemplate.render(evt.properties);
+            })
+            .join('\r\n');
+
+        var emailData = extend({ text: emailBody }, options.email);
+        emailTransport.sendMail(emailData);
     };
 };
 
