@@ -51,7 +51,7 @@ var EmailSink = function (options) {
         emailTransport = nodemailer.createTransport(smtpTransport(options.transport));
     }
 
-    self.emit = function(evts) {
+    self.emit = function(evts, done) {
 
         var emailBody = evts
             .map(function (evt) { 
@@ -60,7 +60,9 @@ var EmailSink = function (options) {
             .join('\r\n');
 
         var emailData = extend({ text: emailBody }, options.email);
-        emailTransport.sendMail(emailData);
+        emailTransport.sendMail(emailData, function (error, info) {
+                done(error);
+            });
     };
 };
 
