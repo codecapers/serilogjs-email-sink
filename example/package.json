@@ -8,6 +8,6 @@
   "author": "ashley@codecapers.com.au",
   "license": "Apache-2.0",
   "dependencies": {
-    "structured-log-dev": "*"
+    "structured-log": "*"
   }
 }
